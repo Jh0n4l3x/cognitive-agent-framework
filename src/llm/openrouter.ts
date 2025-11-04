@@ -11,6 +11,8 @@ import { logger, langsmith } from '../utils';
 export class OpenRouterProvider implements LLMProvider {
   private client: AxiosInstance;
   private config: LLMConfig;
+  private maxRetries: number = 3;
+  private retryDelay: number = 2000; // 2 segundos
 
   constructor(config: LLMConfig) {
     if (!config.apiKey) {
@@ -29,7 +31,37 @@ export class OpenRouterProvider implements LLMProvider {
     });
   }
 
+  private async sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   async generateResponse(
+    messages: Message[],
+    config?: Partial<LLMConfig>,
+    tools?: ToolDefinition[]
+  ): Promise<LLMResponse> {
+    for (let attempt = 0; attempt < this.maxRetries; attempt++) {
+      try {
+        return await this.tryGenerateResponse(messages, config, tools);
+      } catch (error: unknown) {
+        const errorCode = (error as any).response?.status;
+        const isRateLimited = errorCode === 429;
+        
+        if (isRateLimited && attempt < this.maxRetries - 1) {
+          const delay = this.retryDelay * (attempt + 1);
+          logger.warn(`Rate limited, retrying in ${delay}ms (attempt ${attempt + 1}/${this.maxRetries})`, {
+            model: this.config.model,
+          });
+          await this.sleep(delay);
+          continue;
+        }
+        throw error;
+      }
+    }
+    throw new LLMError('Max retries exceeded', 'openrouter');
+  }
+
+  private async tryGenerateResponse(
     messages: Message[],
     config?: Partial<LLMConfig>,
     tools?: ToolDefinition[]
@@ -107,8 +139,17 @@ export class OpenRouterProvider implements LLMProvider {
     } catch (error: unknown) {
       const errorMessage =
         (error as any).response?.data?.error?.message ||
+        (error as any).response?.data?.error ||
         (error as Error).message;
-      logger.error('OpenRouter API Error', { error: errorMessage });
+      const errorCode = (error as any).response?.status;
+      const errorData = (error as any).response?.data;
+      
+      logger.error('OpenRouter API Error', { 
+        error: errorMessage,
+        statusCode: errorCode,
+        fullError: errorData,
+        model: this.config.model
+      });
 
       await langsmith.endRunWithError(run, new Error(errorMessage));
 
