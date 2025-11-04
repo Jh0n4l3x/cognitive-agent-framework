@@ -1,0 +1,24 @@
+name: Local Assistant
+id: assistant-ollama
+description: >
+  Asistente usando Ollama con modelos locales
+
+llm:
+  provider: ollama
+  model: llama3.2 # o mistral, codellama, etc.
+  temperature: 0.7
+  max_tokens: 2048
+  # baseURL: http://localhost:11434  # Opcional, usa este valor por defecto
+
+prompt: |
+  Eres un asistente local ejecutándose en Ollama.
+  Responde de manera útil y precisa.
+
+tools:
+  - note
+  - calculator
+
+memory:
+  enabled: true
+
+maxIterations: 10

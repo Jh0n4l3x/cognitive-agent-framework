@@ -1,0 +1,196 @@
+name: Feature Request
+description: Sugerir una nueva funcionalidad
+title: "[FEATURE]: "
+labels: ["enhancement", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¡Gracias por sugerir una nueva funcionalidad! 
+        Valoramos tu feedback y consideraremos cuidadosamente tu propuesta.
+
+  - type: checkboxes
+    id: pre-check
+    attributes:
+      label: Verificación previa
+      description: Antes de continuar, por favor verifica lo siguiente
+      options:
+        - label: He buscado en los issues existentes y no encontré una solicitud similar
+          required: true
+        - label: Esta funcionalidad no existe actualmente en el framework
+          required: true
+        - label: He revisado la documentación y el roadmap
+          required: true
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Tipo de Funcionalidad
+      description: ¿Qué tipo de funcionalidad estás solicitando?
+      options:
+        - Nuevo proveedor LLM
+        - Nueva herramienta
+        - Nueva integración
+        - Mejora de funcionalidad existente
+        - Mejora de rendimiento
+        - Mejora de documentación
+        - Mejora de API
+        - Otro
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: ¿Está relacionado con un problema?
+      description: Describe el problema o limitación que esta funcionalidad resolvería
+      placeholder: Actualmente es frustrante cuando...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solución Propuesta
+      description: Describe la solución que te gustaría ver implementada
+      placeholder: Me gustaría que el framework pudiera...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas Consideradas
+      description: Describe cualquier solución o funcionalidad alternativa que hayas considerado
+      placeholder: |
+        - Alternativa 1: ...
+        - Alternativa 2: ...
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Caso de Uso
+      description: Describe cómo usarías esta funcionalidad
+      placeholder: |
+        Yo usaría esto para...
+        
+        Ejemplo de código:
+        ```typescript
+        const agent = new Agent({
+          // nueva funcionalidad aquí
+        });
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: api-proposal
+    attributes:
+      label: Propuesta de API (Opcional)
+      description: Si tienes una idea de cómo debería verse la API
+      render: typescript
+      placeholder: |
+        // Ejemplo de cómo podría funcionar
+        interface NewFeature {
+          method(): Promise<Result>;
+        }
+
+  - type: checkboxes
+    id: benefits
+    attributes:
+      label: Beneficios
+      description: ¿Qué beneficios traería esta funcionalidad?
+      options:
+        - label: Mejora la facilidad de uso
+        - label: Añade nueva funcionalidad importante
+        - label: Mejora el rendimiento
+        - label: Reduce la complejidad
+        - label: Mejora la experiencia del desarrollador
+        - label: Hace el código más mantenible
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridad
+      description: ¿Qué prioridad crees que debería tener esto?
+      options:
+        - Crítica (necesaria para usar el framework)
+        - Alta (muy importante pero hay workarounds)
+        - Media (sería bueno tenerlo)
+        - Baja (nice to have)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: breaking
+    attributes:
+      label: Cambios Breaking
+      description: ¿Esta funcionalidad requeriría cambios breaking?
+      options:
+        - label: Sí, requeriría cambios breaking
+        - label: No, sería totalmente compatible con versiones anteriores
+        - label: No estoy seguro
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Notas de Implementación
+      description: Si tienes ideas sobre cómo implementar esto técnicamente
+      placeholder: |
+        Esto podría implementarse mediante...
+        - Paso 1
+        - Paso 2
+        - Consideraciones técnicas
+
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: ¿Estás dispuesto a contribuir?
+      description: ¿Te gustaría trabajar en implementar esta funcionalidad?
+      options:
+        - label: Sí, me gustaría implementar esto
+        - label: Puedo ayudar con testing
+        - label: Puedo ayudar con documentación
+        - label: No puedo contribuir con código, pero puedo ayudar de otras formas
+        - label: No puedo contribuir en este momento
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Referencias
+      description: Enlaces a proyectos similares, documentación, ejemplos, etc.
+      placeholder: |
+        - Link 1
+        - Link 2
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto Adicional
+      description: Cualquier otra información, capturas de pantalla, mockups, etc.
+      placeholder: |
+        - Screenshots
+        - Diagramas
+        - Otras consideraciones
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área del Framework
+      description: ¿Qué área del framework afectaría?
+      multiple: true
+      options:
+        - Core (Agent)
+        - LLM Providers
+        - Memory System
+        - Task Management
+        - Tools System
+        - Integrations
+        - Events
+        - CLI
+        - Testing
+        - Documentation
+        - Build/Development
+        - Otro

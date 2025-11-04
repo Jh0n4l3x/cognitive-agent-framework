@@ -1,0 +1,204 @@
+name: Bug Report
+description: Reportar un bug o problema
+title: "[BUG]: "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por tomarte el tiempo de reportar un bug! 
+        Por favor completa la información a continuación para ayudarnos a resolver el problema.
+
+  - type: checkboxes
+    id: pre-check
+    attributes:
+      label: Verificación previa
+      description: Antes de continuar, por favor verifica lo siguiente
+      options:
+        - label: He buscado en los issues existentes y no encontré uno similar
+          required: true
+        - label: Estoy usando la última versión del framework
+          required: true
+        - label: He leído la documentación relacionada
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descripción del Bug
+      description: Una descripción clara y concisa del bug
+      placeholder: El agente no responde cuando...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Pasos para Reproducir
+      description: Pasos para reproducir el comportamiento
+      placeholder: |
+        1. Configurar agente con '...'
+        2. Ejecutar '...'
+        3. Ver error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamiento Esperado
+      description: Describe qué esperabas que sucediera
+      placeholder: El agente debería...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Comportamiento Actual
+      description: Describe qué sucedió en realidad
+      placeholder: En su lugar, el agente...
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Código de Ejemplo
+      description: Si es posible, proporciona un ejemplo mínimo de código que reproduzca el problema
+      render: typescript
+      placeholder: |
+        import { Agent } from './src/core/agent';
+        
+        const agent = new Agent({
+          // tu código aquí
+        });
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs y Mensajes de Error
+      description: Incluye cualquier log o mensaje de error relevante
+      render: shell
+      placeholder: |
+        Error: ...
+        at ...
+
+  - type: dropdown
+    id: llm-provider
+    attributes:
+      label: Proveedor LLM
+      description: ¿Qué proveedor LLM estás usando?
+      options:
+        - OpenAI
+        - Anthropic
+        - Ollama
+        - OpenRouter
+        - Otro
+        - No aplica
+    validations:
+      required: true
+
+  - type: input
+    id: llm-model
+    attributes:
+      label: Modelo LLM
+      description: ¿Qué modelo específico? (e.g., gpt-4, claude-3-sonnet)
+      placeholder: gpt-4
+
+  - type: dropdown
+    id: integration
+    attributes:
+      label: Integración
+      description: ¿Qué integración estás usando?
+      options:
+        - WhatsApp
+        - Ninguna
+        - Otra
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Versión del Framework
+      description: ¿Qué versión del framework estás usando?
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Versión de Node.js
+      description: Ejecuta `node --version`
+      placeholder: "v18.17.0"
+    validations:
+      required: true
+
+  - type: input
+    id: typescript-version
+    attributes:
+      label: Versión de TypeScript
+      description: Ejecuta `npx tsc --version`
+      placeholder: "5.3.3"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Sistema Operativo
+      description: ¿En qué sistema operativo estás ejecutando?
+      options:
+        - Windows
+        - macOS
+        - Linux (Ubuntu)
+        - Linux (Debian)
+        - Linux (Fedora)
+        - Linux (Arch)
+        - Linux (Otro)
+        - WSL
+        - Otro
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto Adicional
+      description: Agrega cualquier otro contexto sobre el problema aquí
+      placeholder: |
+        - Configuración especial
+        - Dependencias adicionales
+        - Cambios recientes
+        - Screenshots
+
+  - type: checkboxes
+    id: severity
+    attributes:
+      label: Severidad
+      description: ¿Qué tan severo es este bug?
+      options:
+        - label: Crítico (el framework no funciona en absoluto)
+        - label: Alto (funcionalidad importante rota)
+        - label: Medio (funcionalidad menor afectada)
+        - label: Bajo (inconveniente menor)
+
+  - type: checkboxes
+    id: workaround
+    attributes:
+      label: Workaround
+      description: ¿Encontraste alguna solución temporal?
+      options:
+        - label: Sí, encontré un workaround
+        - label: No, no hay workaround conocido
+
+  - type: textarea
+    id: workaround-description
+    attributes:
+      label: Descripción del Workaround
+      description: Si encontraste un workaround, descríbelo aquí
+      placeholder: Temporalmente puedo resolver el problema haciendo...

@@ -1,0 +1,23 @@
+name: Assistant
+id: assistant-openrouter
+description: >
+  Asistente usando OpenRouter con acceso a múltiples modelos
+
+llm:
+  provider: openrouter
+  model: anthropic/claude-3.5-sonnet # o google/gemini-pro-1.5, openai/gpt-4, etc.
+  temperature: 0.7
+  max_tokens: 4096
+
+prompt: |
+  Eres un asistente útil y amigable.
+  Responde de manera clara y concisa.
+
+tools:
+  - note
+  - calculator
+
+memory:
+  enabled: true
+
+maxIterations: 10

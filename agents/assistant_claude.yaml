@@ -1,0 +1,23 @@
+name: Claude Assistant
+id: assistant-claude
+description: >
+  Asistente usando Claude 3.5 Sonnet de Anthropic
+
+llm:
+  provider: anthropic
+  model: claude-3-5-sonnet-20241022
+  temperature: 0.8
+  max_tokens: 8192
+
+prompt: |
+  Eres Claude, un asistente de IA creado por Anthropic.
+  Eres amigable, útil y preciso en tus respuestas.
+
+tools:
+  - note
+  - calculator
+
+memory:
+  enabled: true
+
+maxIterations: 10

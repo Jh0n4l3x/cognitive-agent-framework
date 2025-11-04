@@ -1,0 +1,69 @@
+# Archivos de desarrollo
+src/
+tests/
+examples/
+*.test.ts
+*.spec.ts
+tsconfig.json
+jest.config.js
+
+# Configuración de desarrollo
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+.github/
+.git/
+.gitignore
+.gitattributes
+
+# Documentación de desarrollo
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+INSTALLATION.md
+.github/
+
+# Archivos de construcción temporales
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Configuración de herramientas
+.eslintrc.json
+.prettierrc
+.prettierrc.json
+.editorconfig
+
+# Archivos generados localmente
+logs/
+memory_storage/
+agent_states/
+.wwebjs_auth/
+.wwebjs_cache/
+*.db
+*.sqlite
+
+# Coverage y tests
+coverage/
+.nyc_output/
+.jest/
+
+# Configuración de agentes de ejemplo
+agents/
+!agents/README.md
+
+# Node modules (se instalarán en el consumidor)
+node_modules/
+
+# Lock files (los usuarios generarán los suyos)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Archivos específicos del proyecto
+*.md
+!README.md
+!LICENSE
+!CHANGELOG.md
